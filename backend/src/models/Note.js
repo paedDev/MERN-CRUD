@@ -1,0 +1,29 @@
+import mongoose from "mongoose";
+
+//1 create a schema
+// 2 create a model base on the schema
+
+const noteSchema = new mongoose.Schema(
+  {
+    title: {
+      type: String,
+      required: true,
+      minLength: 3,
+      maxLength: 100,
+    },
+    content: {
+      type: String,
+      minLength: 10,
+      required: true,
+    },
+    author: {
+      type: String,
+      required: true,
+    },
+  },
+  { timestamps: true } //will create createdAt and updatedAt
+);
+
+const Note = mongoose.model("Note", noteSchema);
+
+export default Note;
