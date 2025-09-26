@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { SlEnergy } from "react-icons/sl";
 const RateLimit = () => {
   return (
-    <div className="min-h-screen">
+    <div className="">
       <div className="max-w-7xl mx-auto h-40 ">
         <div className="flex items-center justify-start space-x-6  p-6    bg-green-900/40 max-w-6xl mx-auto">
           <div className="relative flex items-center justify-center">
