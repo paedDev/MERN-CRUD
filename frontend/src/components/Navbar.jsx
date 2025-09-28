@@ -8,7 +8,6 @@ const Navbar = () => {
       <div className="h-20 lg:max-w-7xl mx-auto flex items-center justify-between  p-4 lg:p-10 bg-zinc-600/50 shadow-xl text-white">
         {/*  Logo */}
         <Link to={"/"} className="lg:text-2xl font-bold tracking-wider ">
-          {" "}
           NotePad
         </Link>
 
