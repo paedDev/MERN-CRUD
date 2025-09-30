@@ -8,12 +8,12 @@ const noteSchema = new mongoose.Schema(
     title: {
       type: String,
       required: true,
-      minLength: 2,
+      minLength: [2, "Title must be at least 2 characters long."],
       maxLength: 100,
     },
     content: {
       type: String,
-      minLength: 10,
+      minLength: [10, "Content must be at least 10 characters long."],
       required: true,
     },
     author: {

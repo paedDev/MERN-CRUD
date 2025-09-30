@@ -54,6 +54,11 @@ export const createNote = async (req, res) => {
     const savedNote = await note.save();
     res.status(201).json(savedNote);
   } catch (error) {
+    if (error.name === "ValidationError") {
+      // Extract detailed messages from validation error
+      const messages = Object.values(error.errors).map((err) => err.message);
+      return res.status(400).json({ message: messages.join(", ") });
+    }
     console.error("Error in creating a note", error);
     res.status(500).json({
       message: "Internal server error",

@@ -39,16 +39,21 @@ const CreatePage = () => {
       }, 2000);
       navigate("/");
     } catch (error) {
-      console.log(`Error creating a note`, error);
-      toast.error("Failed to create note");
+      if (error.response && error.response.data && error.response.data.message) {
+        toast.error(error.response.data.message);
+        console.log(error.response.data.message);
+
+      } else {
+        toast.error("Failed to create note");
+      }
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="min-h-screen w-full mt-30 p-10 ">
-      <div className="lg:max-w-6xl min-w-2xl h-full mx-auto text-white  bg-zinc-900 p-10 rounded-xl space-y-6">
+    <div className="min-h-screen w-full mt-20 p-10 ">
+      <div className="lg:max-w-4xl min-w-2xl h-full mx-auto text-white  bg-zinc-900 p-10 rounded-xl space-y-6">
         <Link
           to={"/"}
           className="inline-flex items-center space-x-2 hover:bg-zinc-800 rounded px-3 py-2"
