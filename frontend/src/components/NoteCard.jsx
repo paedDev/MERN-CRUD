@@ -2,7 +2,22 @@ import React from "react";
 import { Link } from "react-router";
 import { CiEdit } from "react-icons/ci";
 import { MdDelete } from "react-icons/md";
-const NoteCard = ({ note }) => {
+import api from "../lib/axios";
+import toast from "react-hot-toast";
+const NoteCard = ({ note, setNotes }) => {
+  const handleDelete = async (e, id) => {
+    e.preventDefault(); //get reid of navigation error
+    if (!window.confirm("Are you sure you want to delete this note?")) return;
+    try {
+      const res = api.delete(`/note/${id}`);
+      setNotes((prev) => prev.filter((note) => note._id !== id)); //get rid of deleted one
+      toast.success("Note deleted successfully");
+    } catch (error) {
+      console.log("error in handleDelete", error);
+
+      toast.error("Failed to delete note");
+    }
+  };
   return (
     <Link
       to={`/note/${note._id}`}
@@ -27,7 +42,10 @@ const NoteCard = ({ note }) => {
           </div>
           <div className="flex items-end justify-end space-x-2 text-2xl">
             <CiEdit />
-            <MdDelete className="text-red-400" />
+            <MdDelete
+              className="text-red-400"
+              onClick={(e) => handleDelete(e, note._id)}
+            />
           </div>
         </div>
       </div>
